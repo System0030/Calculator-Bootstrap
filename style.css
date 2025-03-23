@@ -55,9 +55,9 @@ button {
 }
 
 .history-card {
-    width: 250px; /* Adjust as needed */
-    max-height: 80vh; /* Limit height */
-    overflow-y: auto; /* Enable vertical scrolling */
+    width: 250px;
+    max-height: 80vh;
+    overflow-y: auto;
     background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
 }
 
@@ -110,20 +110,21 @@ button {
   }
 
 
-@media (max-width: 650px) {
+  @media (max-width: 650px) {
     .d-flex {
-        flex-direction: column; /* Stack the calculator and history vertically */
-        align-items: center; /* Center horizontally */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .history-card {
-        width: 90vw; /* Take up 90% of the viewport width */
-        margin-left: 0; /* Remove left margin */
-        margin-top: 20px; /* Add some space between calculator and history */
+        width: 90vw;
+        margin-left: 0;
+        margin-top: 5%;
     }
 
-    .calculator{
-        margin-top: 5%;
+    .calculator {
         width: 90vw;
+        margin-top: 5%;
     }
 }

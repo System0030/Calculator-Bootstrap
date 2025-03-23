@@ -1,6 +1,7 @@
 $(document).ready(function() {
     let display = $('#display');
     let lastWasEqual = false;
+    let historyList = $('#history-list');
 
     const isOperator = char => ['+', '-', '*', '/'].includes(char);
 
@@ -8,6 +9,17 @@ $(document).ready(function() {
         let modifiedExpression = expression.replace(/(\d+)\(/g, '$1*(');
         return modifiedExpression;
     };
+     // Function to escape HTML special characters
+     function escapeHtml(text) {
+        let map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
 
     $('button').on('click', function() {
         let value = $(this).text();
@@ -29,7 +41,13 @@ $(document).ready(function() {
                 let result = eval(expression.replace(/%/g, '/100'));
                 display.val(result);
                 lastWasEqual = true;
-            } catch {
+
+                // Escape HTML before adding to history
+                let escapedExpression = escapeHtml(expression);
+                let escapedResult = escapeHtml(result);
+
+                historyList.prepend(`<p>${escapedExpression} = ${escapedResult}</p>`);
+            } catch (e) {
                 display.val('Error');
                 lastWasEqual = true;
             }
