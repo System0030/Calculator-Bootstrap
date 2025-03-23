@@ -1,0 +1,55 @@
+.calculator {
+    width: 320px;
+    background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+    border-radius: 20px;
+}
+
+.neon-border {
+    box-shadow: 0 0 20px #00f2ff;
+}
+
+.neon-text {
+    color: #00f2ff;
+    text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+}
+
+.neon-input {
+    background-color: #1e1e1e;
+    color: #00f2ff;
+    border: none;
+    box-shadow: 0 0 10px #00f2ff inset;
+}
+
+button {
+    height: 60px;
+    font-size: 1.3rem;
+    border-radius: 10px;
+}
+
+
+
+.h-double {
+    height: calc(100% + 58px + 0.5rem);
+}
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+.span-2 {
+    grid-column: span 2;
+}
+
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+    filter: brightness(50%);
+    opacity: 0.8;
+}
