@@ -2,6 +2,7 @@ $(document).ready(function() {
     let display = $('#display');
     let lastWasEqual = false;
     let historyList = $('#history-list');
+    let lastInput = ''; // Track the last input
 
     const isOperator = char => ['+', '-', '*', '/'].includes(char);
 
@@ -9,8 +10,9 @@ $(document).ready(function() {
         let modifiedExpression = expression.replace(/(\d+)\(/g, '$1*(');
         return modifiedExpression;
     };
-     // Function to escape HTML special characters
-     function escapeHtml(text) {
+
+    // Function to escape HTML special characters
+    function escapeHtml(text) {
         let map = {
             '&': '&amp;',
             '<': '&lt;',
@@ -21,12 +23,20 @@ $(document).ready(function() {
         return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
+    function clearInput() {
+        if (display.val() === '' && lastInput === '') {
+            historyList.empty(); // Clear history if clear is clicked twice without input
+        } else {
+            display.val('');
+        }
+        lastInput = '';
+    }
+
     $('button').on('click', function() {
         let value = $(this).text();
 
         if (value === 'Clear') {
-            display.val('');
-            lastWasEqual = false;
+            clearInput();
         } else if (value === '⌫') {
             if (lastWasEqual) {
                 display.val('');
@@ -47,9 +57,11 @@ $(document).ready(function() {
                 let escapedResult = escapeHtml(result);
 
                 historyList.prepend(`<p>${escapedExpression} = ${escapedResult}</p>`);
+                lastInput = display.val(); // Update last input
             } catch (e) {
                 display.val('Error');
                 lastWasEqual = true;
+                lastInput = 'Error'; // Update last input
             }
         } else if (value === '+/-') {
             let current = display.val();
@@ -107,7 +119,14 @@ $(document).ready(function() {
                 return;
             }
 
-            display.val(current + value);
+            // Prevent leading zeros except for "0."
+            if (current === '0' && value !== '.' && !isOperator(value)) {
+                display.val(value);
+            } else if (current !== '0' || value!== '0' || current.includes('.')) {
+                display.val(current + value);
+            }
+
+            lastInput = display.val(); // Update last input
         }
     });
 
@@ -135,6 +154,11 @@ $(document).ready(function() {
                 continue;
             }
             fixedValue.push(curr);
+        }
+
+        // Prevent leading zeros except for "0."
+        if (fixedValue.length > 1 && fixedValue[0] === '0' && fixedValue[1] !== '.') {
+            fixedValue.shift();
         }
 
         $(this).val(fixedValue.join(''));
