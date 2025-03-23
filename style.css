@@ -54,13 +54,6 @@ button {
     opacity: 0.8;
 }
 
-.history-card {
-    width: 250px;
-    max-height: 80vh;
-    overflow-y: auto;
-    background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-}
-
 .history-list {
     color: #00f2ff;
     padding: 5px;
@@ -72,27 +65,13 @@ button {
     padding-bottom: 5px;
 }
 
-
-
 .history-card {
     width: 250px;
-    height: 30vh;
-    max-height: 80vh;
+    max-height: 89vh;
     overflow-y: auto;
     background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-    margin-left: 10px;
 }
 
-.history-list {
-    color: #00f2ff;
-    padding: 5px;
-}
-
-.history-list p {
-    margin-bottom: 5px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 5px;
-}
 
 .line-divider {
     margin: 10px 0;
@@ -115,16 +94,17 @@ button {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        overflow-y: auto;
     }
 
     .history-card {
-        width: 90vw;
-        margin-left: 0;
-        margin-top: 5%;
+        width: 80vw;
+        margin: 5% 2.5% 5% 5%;
     }
 
     .calculator {
-        width: 90vw;
-        margin-top: 5%;
+        width: 80vw;
+        margin: 5% 5% 0% 5%;
     }
 }
+
