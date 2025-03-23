@@ -123,6 +123,7 @@ button {
     }
 
     .calculator{
+        margin-top: 5%;
         width: 90vw;
     }
 }
