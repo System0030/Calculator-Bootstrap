@@ -59,9 +59,9 @@ $(document).ready(function() {
                 historyList.prepend(`<p>${escapedExpression} = ${escapedResult}</p>`);
                 lastInput = display.val(); // Update last input
             } catch (e) {
-                display.val('Error');
+                display.val('syntax');
                 lastWasEqual = true;
-                lastInput = 'Error'; // Update last input
+                lastInput = 'syntax'; // Update last input
             }
         } else if (value === '+/-') {
             let current = display.val();
@@ -91,7 +91,7 @@ $(document).ready(function() {
                         let newCurrent = current.substring(0, startOfLastPart) + percentage;
                         display.val(newCurrent);
                     } catch (e) {
-                        display.val('Error');
+                        display.val('syntax');
                     }
                 } else {
                     return;
